@@ -1,0 +1,154 @@
+body {
+    font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+    line-height: 1.6;
+    color: #333;
+    background-color: #f0f2f5; 
+    margin: 0;
+    padding: 0;
+}
+
+header {
+    background-color: #1e293b; 
+    color: white;
+    padding: 40px 20px; 
+    text-align: center;
+    border-bottom: 4px solid #3b82f6; 
+}
+
+header h1 {
+    margin: 0;
+    font-size: 2.5rem;
+}
+
+main {
+    max-width: 800px;
+    margin: 20px auto; 
+    padding: 0 20px;
+}
+
+section {
+    background: white;
+    margin-bottom: 20px;
+    padding: 20px;       
+    border-radius: 12px; 
+    box-shadow: 0 4px 6px -1px rgba(0, 0, 0, 0.1); 
+    transition: transform 0.3s ease; 
+}
+
+section:hover {
+    transform: translateY(-5px); 
+    border-left: 5px solid #3b82f6; 
+}
+
+h2 {
+    color: #1e40af;
+    border-bottom: 2px solid #e2e8f0;
+    padding-bottom: 8px;
+    margin-top: 0;
+}
+
+ul {
+    padding-left: 20px;
+}
+
+li {
+    margin-bottom: 10px;
+    list-style-type: square;
+}
+
+footer {
+    text-align: center;
+    padding: 20px;
+    color: #64748b;
+    font-size: 0.9rem;
+}
+
+.skills-list {
+    display: flex;      
+    flex-wrap: wrap;   
+    gap: 15px;           
+    list-style: none;     
+    padding: 0;
+}
+
+.skills-list li {
+    background: #e2e8f0; 
+    padding: 8px 16px;    
+    border-radius: 20px;  
+    font-size: 0.9rem;
+    margin-bottom: 0;     
+}
+.modal-overlay {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background: rgba(0, 0, 0, 0.7);
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    z-index: 1000;
+}
+
+.modal-content {
+    background: white;
+    padding: 30px;
+    border-radius: 12px;
+    width: 320px;
+    text-align: center;
+    box-shadow: 0 5px 15px rgba(0,0,0,0.3);
+}
+
+.modal-input {
+    width: 100%;
+    margin-bottom: 15px;
+    padding: 10px;
+    border: 1px solid #ccc;
+    border-radius: 4px;
+    display: block;
+}
+
+.close-btn {
+    margin-top: 15px;
+    background: #e74c3c;
+    color: white;
+    border: none;
+    padding: 8px 16px;
+    cursor: pointer;
+    border-radius: 4px;
+}
+/* Базові стилі для контейнера */
+.app-container {
+    min-height: 100vh;
+    transition: all 0.3s ease; /* Плавний перехід кольорів */
+    padding: 20px;
+}
+
+/* Світла тема (стандартна) */
+.app-container.light {
+    background-color: #ffffff;
+    color: #333333;
+}
+
+/* Темна тема */
+.app-container.dark {
+    background-color: #1a1a1a;
+    color: #ffffff;
+}
+
+.app-container.dark section, 
+.app-container.dark .modal-content {
+    background-color: #2d2d2d;
+    color: #eeeeee;
+    border: 1px solid #444;
+}
+
+/* Кнопка перемикача */
+.theme-toggle {
+    padding: 8px 15px;
+    cursor: pointer;
+    border-radius: 20px;
+    border: 1px solid #ccc;
+    background: #f0f0f0;
+}

@@ -1,0 +1,131 @@
+<!DOCTYPE html>
+<html lang="uk">
+<head>
+    <meta charset="UTF-8">
+    <title>Моє CV - Ступницька Дарина</title>
+    <link rel="stylesheet" href="styles.css">
+    <style>
+       
+        :root {
+            --bg-color: #ffffff;
+            --text-color: #000000;
+            --card-bg: #f9f9f9;
+        }
+
+        body.dark-mode {
+            --bg-color: #1a1a1a;
+            --text-color: #ffffff;
+            --card-bg: #2d2d2d;
+        }
+
+        body {
+            background-color: var(--bg-color);
+            color: var(--text-color);
+            transition: 0.3s; 
+            font-family: sans-serif;
+            padding: 20px;
+        }
+
+        .review-card {
+            background-color: var(--card-bg);
+            border: 1px solid #ccc;
+            padding: 10px;
+            margin-bottom: 10px;
+        }
+
+        #theme-toggle {
+            position: fixed;
+            top: 20px;
+            right: 20px;
+            padding: 10px;
+            cursor: pointer;
+            z-index: 1001;
+        }
+
+        #modal {
+            display: none; position: fixed; left: 0; top: 0;
+            width: 100%; height: 100%; background: rgba(0,0,0,0.7);
+            justify-content: center; align-items: center; z-index: 1000;
+        }
+        #modal-content { background: white; color: black; padding: 20px; border-radius: 8px; width: 300px; }
+    </style>
+</head>
+
+<body>
+
+<button id="theme-toggle">Змінити тему</button>
+
+<header>
+    <h1>Ступницька Дарина Богданівна</h1>
+    <p>Студентка НУЛП</p>
+</header>
+
+<main>
+    <section>
+        <h2>Про мене</h2>
+        <p>Студентка спеціальності "Кібербезпека".</p>
+    </section>
+
+    <section>
+        <h2>Відгуки</h2>
+        <div id="comments"></div>
+    </section>
+</main>
+
+<div id="modal">
+    <div id="modal-content">
+        <h3>Зворотній зв'язок</h3>
+        <form action="https://formspree.io/f/mdapzjya" method="POST">
+            <input type="text" name="name" placeholder="Ім’я" required style="width:100%"><br><br>
+            <input type="email" name="email" placeholder="Email" required style="width:100%"><br><br>
+            <textarea name="message" placeholder="Повідомлення" style="width:100%"></textarea><br><br>
+            <button type="submit">Відправити</button>
+        </form>
+        <button onclick="closeModal()" style="margin-top:10px">Закрити</button>
+    </div>
+</div>
+
+<footer>
+    <p>&copy; 2026 Ступницька Дарина</p>
+</footer>
+
+<script>
+
+    const themeToggle = document.getElementById('theme-toggle');
+    const currentHour = new Date().getHours();
+    
+    if (currentHour >= 21 || currentHour < 7) {
+        document.body.classList.add('dark-mode');
+    }
+
+    themeToggle.addEventListener('click', () => {
+        document.body.classList.toggle('dark-mode');
+    });
+
+
+    const infoStr = `Браузер: ${navigator.userAgent} | ОС: ${navigator.platform}`;
+    localStorage.setItem('userAgent', navigator.userAgent);
+    localStorage.setItem('platform', navigator.platform);
+    
+    const infoP = document.createElement('p');
+    infoP.textContent = infoStr;
+    document.querySelector('footer').appendChild(infoP);
+
+    fetch('https://jsonplaceholder.typicode.com/posts/1/comments')
+        .then(res => res.json())
+        .then(data => {
+            data.slice(0, 3).forEach(comment => {
+                const div = document.createElement('div');
+                div.className = 'review-card';
+                div.innerHTML = `<strong>${comment.name}</strong><p>${comment.body}</p>`;
+                document.getElementById('comments').appendChild(div);
+            });
+        });
+
+    const modal = document.getElementById("modal");
+    setTimeout(() => { modal.style.display = "flex"; }, 10000); 
+    function closeModal() { modal.style.display = "none"; }
+</script>
+
+</body>
+</html>

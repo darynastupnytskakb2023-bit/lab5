@@ -1,7 +1,7 @@
 function Footer() {
   return (
     <footer>
-      <p>2026 © Дарина Ступницька</p>
+      <p>2026  Дарина Ступницька</p>
     </footer>
   );
 }
